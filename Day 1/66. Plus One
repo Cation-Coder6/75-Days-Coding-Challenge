@@ -1,0 +1,29 @@
+    vector<int> plusOne(vector<int>& digits) {
+        
+        int carry = 0;
+        digits[digits.size()-1] = digits[digits.size()-1] + 1;
+        if(digits[digits.size()-1]==10){
+            carry = 1;
+            digits[digits.size()-1] = digits[digits.size()-1]%10;
+        } 
+        if (carry == 0) return digits;
+        
+        else {
+            for(int i = digits.size()-2 ; i >= 0 ; i--){
+                digits[i] += carry;
+                if(digits[i] > 9) {
+                    carry = 1;
+                    digits[i] = digits[i]%10;
+                }
+                else carry = 0;
+            }
+            if (carry == 0) return digits;
+            
+            else {
+                vector<int> ans;
+                ans.push_back(1);
+                for(int i = 0 ; i < digits.size(); i++) ans.push_back(digits[i]);
+                return ans;
+            }
+        }
+    }
